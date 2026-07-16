@@ -1,0 +1,36 @@
+services:
+    nginx-proxy:
+        image: nginx:alpine
+        container_name: nginx-proxy
+        ports:
+            - "${NGINX_PORT:-80}:80"
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+        depends_on:
+            - site1
+            - site2
+        restart: ${RESTART_POLICY:-unless-stopped}
+        networks:
+            - web-network
+
+    site1:
+        build:
+            context: ./site1
+            dockerfile: Dockerfile
+        container_name: site1
+        restart: ${RESTART_POLICY:-unless-stopped}
+        networks:
+            - web-network
+
+    site2:
+        build:
+            context: ./site2
+            dockerfile: Dockerfile
+        container_name: site2
+        restart: ${RESTART_POLICY:-unless-stopped}
+        networks:
+            - web-network
+
+networks:
+    web-network:
+        driver: bridge

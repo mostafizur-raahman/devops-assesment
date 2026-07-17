@@ -5,6 +5,9 @@ echo "Starting deployment..."
 
 cd /home/ubuntu/devops-assessment || exit 1
 
+git fetch --all
+git reset --hard origin/master
+
 echo "Pulling latest code..."
 git pull origin master
 

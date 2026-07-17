@@ -35,7 +35,7 @@ docker compose down
 echo "Building and starting containers..."
 docker compose up -d --build
 
-echo "🧹 Cleaning up unused Docker images..."
+echo "Cleaning up unused Docker images..."
 docker image prune -f
 
 echo "Deployment successful!"

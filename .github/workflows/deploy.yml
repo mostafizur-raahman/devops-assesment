@@ -13,6 +13,9 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
+            - name: Debug key length
+              run: echo "${{ secrets.AWS_SSH_KEY }}" | wc -l
+
             - name: Deploy to AWS EC2 via SSH
               uses: appleboy/ssh-action@v1.0.3
               with:

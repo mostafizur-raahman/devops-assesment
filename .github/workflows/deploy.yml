@@ -16,6 +16,9 @@ jobs:
             - name: Debug key length
               run: echo "${{ secrets.AWS_SSH_KEY }}" | wc -l
 
+            - name: Debug key format
+              run: echo "${{ secrets.AWS_SSH_KEY }}" | cat -A | head -3
+
             - name: Deploy to AWS EC2 via SSH
               uses: appleboy/ssh-action@v1.0.3
               with:
